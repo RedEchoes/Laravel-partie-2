@@ -1,0 +1,101 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+//magnific popup
+@import '~magnific-popup/dist/magnific-popup.css';
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+input#image, input{
+  border:none;
+  background-color:#f8fafc;
+  margin-left:0;
+  padding-left:0;
+}
+.btn .btn-default{
+  background-color:transparent;
+  border:0px;
+}
+.active-pink-4 input[type=text] {
+  border: 2px solid #fff;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 0 1px 0 0 #fff;
+  background-color: transparent;
+}
+
+.active-pink-4 input::placeholder {
+  color: white;
+}
+.fa-search {
+  margin-top: -7px;
+}
+.page-search .active-pink-4{
+  border: 2px solid pink;
+  border-radius: 25px;
+/*   padding: 10px; */
+  box-shadow: 0 1px 0 0 #fff;
+  background-color: transparent;
+}
+.form-inline{
+  flex-flow:unset;
+}
+.page-search .active-pink-4 input::placeholder {
+  color: black;
+}
+.image-source-link {
+	color: #98C3D1;
+}
+
+.image-source-link {
+	color: #98C3D1;
+}
+
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  backface-visibility:hidden;
+	-webkit-backface-visibility: hidden;
+	-webkit-transition: all 0.3s ease-out; 
+	-moz-transition: all 0.3s ease-out; 
+	-o-transition: all 0.3s ease-out; 
+	transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+		opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+		opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container, 
+.mfp-with-zoom.mfp-removing.mfp-bg {
+	opacity: 0;
+}
+.mfp-with-zoom{width:595px;}
+.accueil{
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+button{
+  background-color:transparent;
+  border:0px;
+  color:pink;
+  margin-top:15px;
+  cursor:pointer;
+}
+.fa-search:hover{
+    color:pink;
+}
+
