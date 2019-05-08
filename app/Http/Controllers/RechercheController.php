@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
+
 use App\Location;
 use Illuminate\Support\Facades\Input;
-
 
 class RechercheController extends Controller
 {
@@ -14,11 +14,12 @@ class RechercheController extends Controller
      */
     public function search()
     {
-        $q = Input::get ( 'q' );
-        $locations = Location::where('name','LIKE','%'.$q.'%')->get();
-        if(count($locations) > 0)
-            return view('search.index')->withDetails($locations)->withQuery ( $q );
-        else return redirect('/')->with('message',"Aucun résultat trouvé !");
-     
+        $q = Input::get('q');
+        $locations = Location::where('name', 'LIKE', '%'.$q.'%')->get();
+        if (count($locations) > 0) {
+            return view('search.index')->withDetails($locations)->withQuery($q);
+        } else {
+            return redirect('/')->with('message', 'Aucun résultat trouvé !');
+        }
     }
 }

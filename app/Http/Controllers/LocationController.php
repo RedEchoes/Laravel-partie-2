@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Intervention\Image\Facades\Location as InterventionImage;
-use Illuminate\Support\Facades\Storage;
 use App\Location;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 class LocationController extends Controller
 {
     /**
@@ -26,6 +26,7 @@ class LocationController extends Controller
     public function create()
     {
         $locations = Location::pluck('name', 'id');
+
         return view('images.create', compact('location'));
     }
 
@@ -37,16 +38,16 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate ([
+        $request->validate([
             'name' => 'nullable|string|max:255',
         ]);
- 
+
         // Sauvegarde dans la base de données
         $location = new Location;
         $location->name = $request->name;
         $location->save();
- 
-        return redirect('images/create')->with('ok', __("La location a bien été enregistrée"));
+
+        return redirect('images/create')->with('ok', __('La location a bien été enregistrée'));
     }
 
     /**
@@ -58,6 +59,7 @@ class LocationController extends Controller
     public function show($id)
     {
         $location = Location::all();
+
         return view('location.show', compact('location'));
     }
 
