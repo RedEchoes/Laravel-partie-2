@@ -23,3 +23,4 @@ Route::resource('location', 'LocationController');
 Route::post('/search', 'RechercheController@search');
 Route::get('/search', 'RechercheController@search');
 Route::name('user')->get('user/{user}', 'ImageController@user');
+

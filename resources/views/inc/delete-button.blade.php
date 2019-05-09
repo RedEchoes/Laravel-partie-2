@@ -7,5 +7,4 @@
     <i class="fa fa-trash"></i>
     </button>
 </form> 
-
 @endadminOrOwner 
