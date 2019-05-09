@@ -185,6 +185,7 @@ class ImageController extends Controller
             return response()->json([
                 'id' => $image->id,
             ], 200);
+           
         } else {
             return response()->json(['message' => 'Not Found!'], 404);
         }
