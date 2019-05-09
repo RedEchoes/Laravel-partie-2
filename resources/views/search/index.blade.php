@@ -29,6 +29,7 @@
                             <p>{{$image->location->name}}</p>
                             <div class="row ml-0">
                                 @auth
+                                @include ('inc.delete-button')
                                 @include('inc.alert-button')
                                 @endauth
                             </div>
