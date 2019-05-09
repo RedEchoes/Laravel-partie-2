@@ -1,19 +1,11 @@
-
-
-
-@auth
-
-{!! Form::open(['action' => ['ImageController@destroy', $image->id], 'method' => 'POST']) !!}
-{{ Form::button('<i class="fas fa-trash-alt fa-2x"></i>', ['class' => 'form-delete', 'type' => 'submit']) }}
-{{ Form::hidden('_method', 'DELETE')}}
-{{!! Form::close() !!}} 
-<!-- <form action="{{ url('images/'.$image->id) }}" method="POST" class="form-delete">
+@adminOrOwner($image->user_id)
+<form method="POST" action="{{ url('images/'.$image->id) }}" class="form-delete float-right">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
 
-    <button type="submit" class="m-2 btn btn-danger float-left">
-        Supprimer
+    <button type="submit">
+    <i class="fa fa-trash"></i>
     </button>
-</form> -->
-@endauth
+</form> 
 
+@endadminOrOwner 
