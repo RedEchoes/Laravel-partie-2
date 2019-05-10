@@ -13,18 +13,34 @@
             @csrf
             @method('PUT')
             @include('partials.form-group', [
+                'title' => __('Pseudo'),
+                'type' => 'text',
+                'name' => 'text',
+                'required' => true,
+                'value' => $user->name,
+            ])
+            @include('partials.form-group', [
                 'title' => __('Adresse email'),
                 'type' => 'email',
                 'name' => 'email',
                 'required' => true,
                 'value' => $user->email,
             ])
-            <a href="{{ route('profile.show', $user->id) }}" class="btn btn-warning invisible" role="button" aria-disabled="true"><i class="fas fa-dolly fa-lg"></i> @lang('Exporter mes données personnelles')</a>
+            @include('partials.form-group', [
+                'title' => __('Mot de passe'),
+                'type' => 'password',
+                'name' => 'password',
+                'required' => true,
+                'value' => $user->password,
+            ])
             @component('components.button')
                 @lang('Envoyer')
             @endcomponent
         </form>
     @endcomponent
 @endsection
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.min.js"></script>
 
-    @include('partials.script-delete', ['text' => __('Vraiment supprimer votre compte ?'), 'return' => 'home'])
+@include('partials.script-delete', ['text' => __('Vraiment supprimer votre compte ?'), 'return' => 'home'])
+@endsection

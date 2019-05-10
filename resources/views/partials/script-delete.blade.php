@@ -22,11 +22,13 @@
                     })
                     .done(() => {
                         @switch($return)
+                            @case('reload')
+                                location.reload()
+                                @break
                         @case('home')
                           location.replace('/')
                         @break
-                      @endswitch
-                         
+                        @endswitch  
                     })
                     .fail(() => {
                         swal({
