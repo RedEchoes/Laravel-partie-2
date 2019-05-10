@@ -55,6 +55,12 @@
                         </li>
                         @endif
                         @else
+                        <li class="nav-item{{ currentRoute(
+                                     route('profile.edit', auth()->id()),
+                                  route('profile.show', auth()->id())
+                )}}">
+                <a class="nav-link" href="{{ route('profile.edit', auth()->id()) }}">@lang('Profil')</a>
+                 </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url("images") }}">Voir toutes les images</a>
                         </li>
