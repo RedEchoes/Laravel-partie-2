@@ -61,6 +61,11 @@
                 )}}">
                 <a class="nav-link" href="{{ route('profile.edit', auth()->id()) }}">@lang('Profil')</a>
                  </li>
+                 @admin
+                 <li class="nav-item">
+                            <a class="nav-link" href="{{ url("user") }}">Les utilisateurs</a>
+                        </li>
+                        @endadmin
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url("images") }}">Voir toutes les images</a>
                         </li>

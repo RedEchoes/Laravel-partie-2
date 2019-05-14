@@ -38,6 +38,7 @@
             @endcomponent
         </form>
     @endcomponent
+    
 @endsection
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.min.js"></script>

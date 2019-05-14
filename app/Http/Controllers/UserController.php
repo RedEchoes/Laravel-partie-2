@@ -4,14 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-class ProfileController extends Controller
+class UserController extends Controller
 {
-
-    public function __construct()
-{
-    $this->middleware('ajax')->only('destroy');
-}
-   
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +13,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('users.index', compact('users'));
+
     }
 
     /**
@@ -49,9 +45,9 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('users.show',  compact('user'));
     }
 
     /**
@@ -62,8 +58,7 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize ('manage', $user);
-        return view ('profiles.edit', compact ('user'));
+        return view ('users.edit', compact ('user'));
     }
 
     /**
@@ -82,7 +77,7 @@ class ProfileController extends Controller
         $user->update ([
             'email' => $request->email,
         ]);
-        return back ()->with ('ok', __ ('Le profil a bien été mis à jour'));
+        return back ()->with ('ok', __ ('Les modifications ont bien été enregistrés'));
     }
 
     /**
@@ -93,8 +88,13 @@ class ProfileController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize ('manage', $user);
-        $user->delete();
-        return response ()->json ();
+        if ($user->delete()) {
+            return response()->json([
+                'id' => $user->id,
+            ], 200);
+           
+        } else {
+            return response()->json(['message' => 'Not Found!'], 404);
+        }
     }
 }

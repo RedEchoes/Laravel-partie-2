@@ -27,4 +27,8 @@ Route::resource ('profile', 'ProfileController', [
         'only' => ['edit', 'update', 'destroy', 'show'],
         'parameters' => ['profile' => 'user']
     ]);
-
+Route::resource('user', 'UserController');
+Route::resource ('user', 'UserController', [
+    'only' => ['edit', 'update', 'destroy', 'show'],
+    'parameters' => ['user' => 'user']
+]);
