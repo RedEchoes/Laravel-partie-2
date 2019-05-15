@@ -189,4 +189,6 @@ class ImageController extends Controller
             return response()->json(['message' => 'Not Found!'], 404);
         }
     }
+
+    
 }

@@ -18,7 +18,7 @@ Route::get('profile', function () {
     // Seulement les utilisateurs connectés peuvent entrer
 })->middleware('verified');
 Route::resource('images', 'ImageController');
-Route::post('/alert/{id}', 'ImageController@alert');
+Route::get('/alert/{id}', 'ImageController@alert');
 Route::resource('location', 'LocationController');
 Route::post('/search', 'RechercheController@search');
 Route::get('/search', 'RechercheController@search');

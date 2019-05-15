@@ -16,10 +16,27 @@ $(() => {
                 document.getElementById("image-" + data.id).remove()
             })
             .fail(() => {
-                alert("L'article n'a pas pu être supprimé")
+                alert("La photo n'a pu être supprimée")
             })
         }
  
+    })
+
+    $('.btnAlert').submit((e) => {
+        e.preventDefault();
+        let href = $(e.currentTarget).attr('action')
+        if (confirm("Voulez-vous signaler cet image?")){
+            $.ajax({
+                url: href,
+                type: 'GET'
+            })
+            .done((data) => {
+              $('div.alert').html(data);
+            })
+            .fail(() => {
+                alert("Le signalement n'a pas fonctionné")
+            })
+        }
     })
 })
 

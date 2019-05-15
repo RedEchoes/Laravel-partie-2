@@ -53879,7 +53879,22 @@ $(function () {
       }).done(function (data) {
         document.getElementById("image-" + data.id).remove();
       }).fail(function () {
-        alert("L'article n'a pas pu être supprimé");
+        alert("La photo n'a pu être supprimée");
+      });
+    }
+  });
+  $('.btnAlert').submit(function (e) {
+    e.preventDefault();
+    var href = $(e.currentTarget).attr('action');
+
+    if (confirm("Voulez-vous signaler cet image?")) {
+      $.ajax({
+        url: href,
+        type: 'GET'
+      }).done(function (data) {
+        $('div.alert').html(data);
+      }).fail(function () {
+        alert("Le signalement n'a pas fonctionné");
       });
     }
   });
@@ -53905,8 +53920,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\Laravel-partie-2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\Laravel-partie-2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\1795145\UwAmp\www\Laravel-partie-2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\1795145\UwAmp\www\Laravel-partie-2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
