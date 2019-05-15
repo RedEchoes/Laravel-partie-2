@@ -1,8 +1,8 @@
 @auth
 <form action="/alert/{{ $image->id }}" class="btnAlert" method="GET">
 @csrf
-    <button type="submit" class="m-2 btn btn-info ml-1">
-        Signaler
+    <button type="submit">
+    <i class="fas fa-exclamation-triangle fa-2x"></i>
     </button>
 </form>
 @endauth

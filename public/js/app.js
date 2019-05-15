@@ -38637,7 +38637,7 @@ process.umask = function() { return 0; };
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-* sweetalert2 v8.10.6
+* sweetalert2 v8.10.7
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -39743,7 +39743,7 @@ var renderProgressSteps = function renderProgressSteps(instance, params) {
     }
 
     if (index !== params.progressSteps.length - 1) {
-      var lineEl = createLineElement(step, index);
+      var lineEl = createLineElement(step);
       progressStepsContainer.appendChild(lineEl);
     }
   });
@@ -40398,8 +40398,10 @@ var privateMethods = {
  * Instance method to close sweetAlert
  */
 
-function removePopupAndResetState(container, onAfterClose) {
-  if (!isToast()) {
+function removePopupAndResetState(container, isToast, onAfterClose) {
+  if (isToast) {
+    triggerOnAfterClose(onAfterClose);
+  } else {
     restoreActiveElement().then(function () {
       return triggerOnAfterClose(onAfterClose);
     });
@@ -40407,8 +40409,6 @@ function removePopupAndResetState(container, onAfterClose) {
       capture: globalState.keydownListenerCapture
     });
     globalState.keydownHandlerAdded = false;
-  } else {
-    triggerOnAfterClose(onAfterClose);
   } // Unset globalState props so GC will dispose globalState (#1569)
 
 
@@ -40433,11 +40433,11 @@ function removeBodyClasses() {
   removeClass([document.documentElement, document.body], [swalClasses.shown, swalClasses['height-auto'], swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['toast-column']]);
 }
 
-function swalCloseEventFinished(popup, container, onAfterClose) {
+function swalCloseEventFinished(popup, container, isToast, onAfterClose) {
   popup.removeEventListener(animationEndEvent, swalCloseEventFinished);
 
   if (hasClass(popup, swalClasses.hide)) {
-    removePopupAndResetState(container, onAfterClose);
+    removePopupAndResetState(container, isToast, onAfterClose);
   } // Unset WeakMaps so GC will be able to dispose them (#1569)
 
 
@@ -40461,10 +40461,10 @@ function close(resolveValue) {
   addClass(popup, swalClasses.hide); // If animation is supported, animate
 
   if (animationEndEvent && hasCssAnimation(popup)) {
-    popup.addEventListener(animationEndEvent, swalCloseEventFinished.bind(null, popup, container, onAfterClose));
+    popup.addEventListener(animationEndEvent, swalCloseEventFinished.bind(null, popup, container, isToast(), onAfterClose));
   } else {
     // Otherwise, remove immediately
-    removePopupAndResetState(container, onAfterClose);
+    removePopupAndResetState(container, isToast(), onAfterClose);
   }
 
   if (onClose !== null && typeof onClose === 'function') {
@@ -40673,7 +40673,7 @@ var defaultInputValidators = {
   },
   url: function url(string, validationMessage) {
     // taken from https://stackoverflow.com/a/3809435 with a small change from #1306
-    return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage ? validationMessage : 'Invalid URL');
+    return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage ? validationMessage : 'Invalid URL');
   }
 };
 
@@ -41391,7 +41391,7 @@ Object.keys(instanceMethods).forEach(function (key) {
   };
 });
 SweetAlert.DismissReason = DismissReason;
-SweetAlert.version = '8.10.6';
+SweetAlert.version = '8.10.7';
 
 var Swal = SweetAlert;
 Swal["default"] = Swal;

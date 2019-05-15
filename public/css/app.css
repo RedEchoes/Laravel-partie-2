@@ -12828,7 +12828,8 @@ button {
 
 /* PARTIE 2 */
 
-.fa-trash {
+.fa-trash,
+.fa-exclamation-triangle {
   color: red;
 }
 

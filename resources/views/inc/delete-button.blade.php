@@ -4,7 +4,7 @@
     {{ method_field('DELETE') }}
 
     <button type="submit">
-    <i class="fa fa-trash"></i>
+    <i class="fa fa-trash fa-2x"></i>
     </button>
 </form> 
 @endadminOrOwner 
