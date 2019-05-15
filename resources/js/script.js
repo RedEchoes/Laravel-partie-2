@@ -14,6 +14,7 @@ $(() => {
             })
             .done((data) => {
                 document.getElementById("image-" + data.id).remove()
+                alert("La suppression a été effectuée avec succès")
             })
             .fail(() => {
                 alert("La photo n'a pu être supprimée")
@@ -31,7 +32,8 @@ $(() => {
                 type: 'GET'
             })
             .done((data) => {
-              $('div.alert').html(data);
+              $('div.alert').html(data)
+              alert("Le signalement a été affectué avec succès")
             })
             .fail(() => {
                 alert("Le signalement n'a pas fonctionné")

@@ -53878,6 +53878,7 @@ $(function () {
         type: 'DELETE'
       }).done(function (data) {
         document.getElementById("image-" + data.id).remove();
+        alert("La suppression a été effectuée avec succès");
       }).fail(function () {
         alert("La photo n'a pu être supprimée");
       });
@@ -53893,6 +53894,7 @@ $(function () {
         type: 'GET'
       }).done(function (data) {
         $('div.alert').html(data);
+        alert("Le signalement a été affectué avec succès");
       }).fail(function () {
         alert("Le signalement n'a pas fonctionné");
       });
