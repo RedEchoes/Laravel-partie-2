@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <!-- Styles -->
     <style>
         html,
@@ -134,12 +136,22 @@
             <!-- Search form -->
             <form action="/search" method="POST" role="search" class="form-inline active-pink-4 col-lg-8">
                 {{ csrf_field() }}
-                <input class="form-control form-control-sm mr-3 w-75 active-pink-4 search" type="text" name="q"
+                <input id="q" class="form-control form-control-sm mr-3 w-75 active-pink-4 search" type="text" name="q"
                     placeholder="Search..." aria-label="Search">
                 <button type="submit">
                     <i class="fas fa-search fa-2x" aria-hidden="true"></i>
                 </button>
             </form>
+            <script type="text/javascript">
+    var route = "{{ url('autocomplete') }}";
+    jQuery('#q').typeahead({
+        source:  function (term, process) {
+        return $.get(route, { term: term }, function (data) {
+                return process(data);
+            });
+        }
+    });
+</script>
         </div>
 
     </div>
