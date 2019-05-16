@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+
 use App\User;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-
     public function __construct()
-{
-    $this->middleware('ajax')->only('destroy');
-}
-   
+    {
+        $this->middleware('ajax')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -62,8 +62,9 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
-        $this->authorize ('manage', $user);
-        return view ('profiles.edit', compact ('user'));
+        $this->authorize('manage', $user);
+
+        return view('profiles.edit', compact('user'));
     }
 
     /**
@@ -75,14 +76,15 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->authorize ('manage', $user);
-        $request->validate ([
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+        $this->authorize('manage', $user);
+        $request->validate([
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
         ]);
-        $user->update ([
+        $user->update([
             'email' => $request->email,
         ]);
-        return back ()->with ('ok', __ ('Le profil a bien été mis à jour'));
+
+        return back()->with('ok', __('Le profil a bien été mis à jour'));
     }
 
     /**
@@ -93,8 +95,9 @@ class ProfileController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize ('manage', $user);
+        $this->authorize('manage', $user);
         $user->delete();
-        return response ()->json ();
+
+        return response()->json();
     }
 }

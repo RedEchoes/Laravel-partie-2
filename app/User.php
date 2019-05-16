@@ -41,10 +41,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Image::class);
     }
-    public function getAdminAttribute()
-{
-    return $this->role === 'admin';
-}
 
- 
+    public function getAdminAttribute()
+    {
+        return $this->role === 'admin';
+    }
 }
