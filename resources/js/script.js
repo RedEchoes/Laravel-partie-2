@@ -40,5 +40,24 @@ $(() => {
             })
         }
     })
+
+    $('.delete-user').submit((e) => {
+        e.preventDefault();
+        let href = $(e.currentTarget).attr('action')
+        if (confirm('Vraiment supprimer ?')){
+            $.ajax({
+                url: href,
+                type: 'DELETE'
+            })
+            .done((data) => {
+                document.getElementById("user-" + data.id).remove()
+                alert("La suppression a été effectuée avec succès")
+            })
+            .fail(() => {
+                alert("L'utilisateur n'a pu être supprimée")
+            })
+        }
+ 
+    })
 })
 

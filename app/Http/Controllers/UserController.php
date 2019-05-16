@@ -70,13 +70,16 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+
         $request->validate ([
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'name' => 'required|max:255|alpha|unique:users,name,' . $user->id, 
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id
         ]);
         $user->update ([
-            'email' => $request->email,
+            'name' => $request->name,
+            'email' => $request->email
         ]);
-        return back ()->with ('ok', __ ('Les modifications ont bien été enregistrés'));
+        return back ()->with('ok', __ ('Les modifications ont bien été enregistrés'));
     }
 
     /**
@@ -87,13 +90,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if ($user->delete()) {
-            return response()->json([
-                'id' => $user->id,
-            ], 200);
-           
-        } else {
-            return response()->json(['message' => 'Not Found!'], 404);
-        }
+        $this->authorize ('manage', $user);
+        $user->delete();
+        return response ()->json ();
     }
 }
