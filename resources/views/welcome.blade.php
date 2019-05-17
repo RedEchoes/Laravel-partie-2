@@ -134,7 +134,7 @@
       
         <div class="content">
             <!-- Search form -->
-            <form action="/search" method="POST" role="search" class="form-inline active-pink-4 col-lg-8">
+            <form action="/search" method="GET" role="search" class="form-inline active-pink-4 col-lg-8">
                 {{ csrf_field() }}
                 <input id="q" class="form-control form-control-sm mr-3 w-75 active-pink-4 search" type="text" name="q"
                     placeholder="Search..." aria-label="Search">

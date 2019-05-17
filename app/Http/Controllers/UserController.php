@@ -72,7 +72,7 @@ class UserController extends Controller
     {
 
         $request->validate ([
-            'name' => 'required|max:255|alpha|unique:users,name,' . $user->id, 
+            'name' => 'required|max:255|unique:users,name,' . $user->id, 
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id
         ]);
         $user->update ([
@@ -90,8 +90,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $this->authorize ('manage', $user);
+        /* $this->authorize ('manage', $user); */
         $user->delete();
-        return response ()->json ();
+        return response()->json($user);
     }
 }

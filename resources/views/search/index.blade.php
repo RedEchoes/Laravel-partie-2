@@ -15,16 +15,20 @@
         </form>
     </div>
     @if(isset($details))
+    
     <p> Votre résultat de la recherche <b class="font-weight-bold"> {{ $query }} </b> est :</p>
                 <div class="d-flex flex-wrap justify-content-between">
                     @foreach($details as $location)
+                    
                     @foreach($location->images as $image)
+                   
                         <div class="d-flex flex-column mt-5">
-                            <p>Image de <ins>{{$image->user->name }}</ins></p>
+                            
                             <div class="popup-gallery">
                                 <a href="/storage/images/{{$image->name}}"><img src="/storage/thumbs/{{$image->name}}"
                                         alt="images" class="image" /></a>
                             </div>
+                            <p>Image par {{ $image->user->name }}</p>
                             <p>{{$image->created_at}}</p>
                             <p>{{$image->location->name}}</p>
                             <div class="row ml-0">

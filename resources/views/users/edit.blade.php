@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -16,7 +15,7 @@
             @include('partials.form-group', [
                 'title' => __('Nom'),
                 'type' => 'text',
-                'name' => 'text',
+                'name' => 'name',
                 'required' => true,
                 'value' => $user->name,
             ])

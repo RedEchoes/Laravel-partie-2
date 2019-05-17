@@ -1,21 +1,20 @@
 @extends('layouts.form')
-@section('css')
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css">
-@endsection
+
 @section('card')
     @component('components.card')
+    @include('inc.delete-button-user')
         @slot('title')
             @lang('Modifer le profil')
             <a href="{{ route('profile.destroy', $user->id) }}" class="btn btn-danger btn-sm pull-right float-right" role="button" aria-disabled="true"><i class="fas fa-angry fa-lg"></i> @lang('Supprimer mon compte')</a>
         @endslot
+        
         <form method="POST" action="{{ route('profile.update', $user->id) }}">
             @csrf
             @method('PUT')
             @include('partials.form-group', [
                 'title' => __('Pseudo'),
                 'type' => 'text',
-                'name' => 'text',
+                'name' => 'name',
                 'required' => true,
                 'value' => $user->name,
             ])
@@ -38,10 +37,4 @@
             @endcomponent
         </form>
     @endcomponent
-    
-@endsection
-@section('script')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.min.js"></script>
-
-@include('partials.script-delete', ['text' => __('Vraiment supprimer votre compte ?'), 'return' => 'home'])
 @endsection

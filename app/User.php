@@ -39,7 +39,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function images()
     {
-        return $this->belongsToMany(Image::class);
+        return $this->hasMany(Image::class);
     }
     public function getAdminAttribute()
 {
