@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 @yield('card')
+                
             </div>
         </div>
     </div>

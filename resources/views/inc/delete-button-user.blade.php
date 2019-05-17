@@ -1,4 +1,3 @@
-@admin($user->id)
 <form method="POST" action="{{ url('user/'.$user->id) }}" class="delete-user float-right">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
@@ -6,4 +5,3 @@
     Supprimer
     </button>
 </form>
-@endadmin

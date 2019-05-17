@@ -25,12 +25,13 @@ Route::get('/search', 'RechercheController@search');
 Route::get('q', 'AutoCompleteController@index');
 Route::get('autocomplete', 'AutoCompleteController@search');
 Route::name('user')->get('user/{user}', 'ImageController@user');
+/* Route::resource('profile', 'ProfileController'); */
 Route::resource('profile', 'ProfileController', [
-        'only' => ['edit', 'update', 'destroy', 'show'],
+        'only' => ['index', 'edit', 'update', 'destroy', 'show'],
         'parameters' => ['profile' => 'user'],
     ]);
-Route::resource('user', 'UserController');
-/* Route::resource ('user', 'UserController', [
-    'only' => ['edit', 'update', 'destroy', 'show'],
-    'parameters' => ['user' => 'user'] */
-
+/* Route::resource('user', 'UserController'); */
+Route::resource ('user', 'UserController', [
+    'only' => ['index', 'edit', 'update', 'destroy', 'show'],
+    'parameters' => ['user' => 'user']
+    ]);
