@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+
 use App\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -14,8 +15,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('users.index', compact('users'));
 
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -47,7 +48,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show',  compact('user'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -58,7 +59,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view ('users.edit', compact ('user'));
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -75,11 +76,12 @@ class UserController extends Controller
             'name' => 'required|max:255|unique:users,name,' . $user->id, 
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id
         ]);
-        $user->update ([
+        $user->update([
             'name' => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
         ]);
-        return back ()->with('ok', __ ('Les modifications ont bien été enregistrés'));
+
+        return back()->with('ok', __('Les modifications ont bien été enregistrés'));
     }
 
     /**

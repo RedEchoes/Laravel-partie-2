@@ -8,10 +8,12 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class UserPolicy
 {
     use HandlesAuthorization;
+
     public function manage(User $user, User $userprofile)
     {
         return $user->id === $userprofile->id;
     }
+
     /**
      * Determine whether the user can view the model.
      *

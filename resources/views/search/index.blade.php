@@ -23,7 +23,7 @@
                     @foreach($location->images as $image)
                    
                         <div class="d-flex flex-column mt-5">
-                            
+                            <
                             <div class="popup-gallery">
                                 <a href="/storage/images/{{$image->name}}"><img src="/storage/thumbs/{{$image->name}}"
                                         alt="images" class="image" /></a>
