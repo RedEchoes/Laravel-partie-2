@@ -9,7 +9,6 @@
     <img src="/storage/thumbs/{{$image->name}}"alt="images"/>
              <p>{{$image->created_at}}</p>
               @auth
-
                @include('inc.delete-button')
                @include('inc.edit-button')
               @endauth

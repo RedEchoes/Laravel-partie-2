@@ -2,6 +2,6 @@
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
     <button type="submit"  class="btn btn-danger mt-0">
-    Supprimer
+    Supprimer le compte
     </button>
 </form>
