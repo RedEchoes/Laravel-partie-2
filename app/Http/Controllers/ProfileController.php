@@ -76,12 +76,12 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->authorize ('manage', $user);
-        $request->validate ([
-            'name' => 'required|max:255|unique:users,name,' . $user->id,
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+        $this->authorize('manage', $user);
+        $request->validate([
+            'name' => 'required|max:255|unique:users,name,'.$user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
         ]);
-        $user->update ([
+        $user->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
@@ -99,6 +99,7 @@ class ProfileController extends Controller
     {
         /* $this->authorize ('manage', $user); */
         $user->delete();
-        return response ()->json($user);
+
+        return response()->json($user);
     }
 }

@@ -31,7 +31,7 @@ Route::resource('profile', 'ProfileController', [
         'parameters' => ['profile' => 'user'],
     ]);
 /* Route::resource('user', 'UserController'); */
-Route::resource ('user', 'UserController', [
+Route::resource('user', 'UserController', [
     'only' => ['index', 'edit', 'update', 'destroy', 'show'],
-    'parameters' => ['user' => 'user']
+    'parameters' => ['user' => 'user'],
     ]);
