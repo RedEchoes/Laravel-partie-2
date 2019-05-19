@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@admin
 @section('content')
 <div class="table-responsive col-lg-12">
     <table class="table">
@@ -14,3 +14,4 @@
     </table>
 </div>
 @endsection
+@endadmin

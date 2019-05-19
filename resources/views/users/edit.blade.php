@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@admin
 @section('content')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -33,3 +33,4 @@
             </div>
             </div>
 @endsection
+@endadmin

@@ -1,4 +1,4 @@
-
+@admin
 @foreach ($users as $user)
     <tr id="user-{{ $user->id }}">
         <td class="text-primary"><strong>{{ $user->name }}</strong></td>
@@ -9,3 +9,4 @@
         @endadmin
     </tr>
 @endforeach
+@endadmin

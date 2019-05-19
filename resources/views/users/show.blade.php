@@ -1,6 +1,6 @@
 
 @extends('layouts.app')
-
+@admin
 @section('content')
 
 <nav aria-label="breadcrumb">
@@ -25,5 +25,5 @@
 </div>
 
  @endsection
-
+@endadmin
  
