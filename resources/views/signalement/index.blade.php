@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="d-flex flex-wrap justify-content-center">
+           
             @foreach ($images as $image)
-        
             <div id="image-{{ $image->id }}">
                 <div class="card m-2" id="image-{{ $image->id }}">
                     <div class="popup-gallery">

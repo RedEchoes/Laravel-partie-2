@@ -31,3 +31,4 @@ Route::resource('profile', 'ProfileController', [
 Route::resource('user', 'UserController', [
     'parameters' => ['user' => 'user'],
     ]);
+Route::get('/signalement', 'AdminController@index');

@@ -65,6 +65,9 @@
                  <li class="nav-item">
                             <a class="nav-link" href="{{ url("user") }}">Les utilisateurs</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url("signalement") }}">Photos signalées</a>
+                        </li>
                         @endadmin
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url("images") }}">Voir toutes les images</a>
