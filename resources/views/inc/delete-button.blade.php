@@ -1,5 +1,5 @@
 @adminOrOwner($image->user_id)
-<form method="POST" action="{{ url('images/'.$image->id) }}" class="form-delete float-right">
+<form method="POST" action="{{ url('images/'.$image->id) }}" class="image-delete float-right">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
 

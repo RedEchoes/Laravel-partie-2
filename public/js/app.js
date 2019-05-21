@@ -53868,7 +53868,7 @@ $(function () {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-  $('.form-delete').submit(function (e) {
+  $('.image-delete').submit(function (e) {
     e.preventDefault();
     var href = $(e.currentTarget).attr('action');
 
@@ -53896,6 +53896,24 @@ $(function () {
         console.log(data);
         document.getElementById("user-" + data.id).remove();
         alert("La suppression a été effectuée avec succès");
+      }).fail(function () {
+        alert("L'utilisateur n'a pu être supprimée");
+      });
+    }
+  });
+  $('.profile-delete').submit(function (e) {
+    e.preventDefault();
+    var href = $(e.currentTarget).attr('action');
+
+    if (confirm('Vraiment supprimer ?')) {
+      $.ajax({
+        url: href,
+        type: 'DELETE'
+      }).done(function (data) {
+        console.log(data);
+        document.getElementById("user-" + data.id).remove();
+        alert("La suppression de l'utilisateur a été effectuée avec succès");
+        return redirect('/');
       }).fail(function () {
         alert("L'utilisateur n'a pu être supprimée");
       });
