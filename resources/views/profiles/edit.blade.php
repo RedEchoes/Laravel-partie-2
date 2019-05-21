@@ -5,7 +5,7 @@
     
         @slot('title')
             @lang('Modifer le profil')
-            @include('inc.delete-button-user')
+            @include('inc.delete-profil-button')
         @endslot
         
         <form method="POST" action="{{ route('profile.update', $user->id) }}">

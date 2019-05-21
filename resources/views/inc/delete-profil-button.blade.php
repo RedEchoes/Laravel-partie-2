@@ -1,7 +1,7 @@
-<form method="POST" action="{{ url('user/'.$user->id) }}" class="form-delete float-right">
+<form method="POST" action="{{ route('profile.destroy', $user->id) }}" class="float-right">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
-    <button type="submit" class="btn btn-danger btn-sm pull-right float-right">
-    Supprimer mon compte
+    <button type="submit"  class="btn btn-danger mt-0">
+    Supprimer le compte
     </button>
-</form> 
+</form>
