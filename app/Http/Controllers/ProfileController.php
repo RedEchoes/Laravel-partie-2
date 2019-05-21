@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller {
     /* public function __construct() {
@@ -73,10 +74,12 @@ class ProfileController extends Controller {
         $request -> validate([
             'name' => 'required|max:255|unique:users,name,'.$user -> id,
             'email' => 'required|string|email|max:255|unique:users,email,'.$user -> id,
+            'password' => 'required|min:6|unique:users,password,'.$user -> id, 
         ]);
         $user -> update([
             'name' => $request -> name,
             'email' => $request -> email,
+            'password' => Hash::make($request->password),
         ]);
 
         return back() -> with('ok', __('Le profil a bien été mis à jour'));

@@ -20,6 +20,7 @@
     <li class="list-group-item">{{ "Rôle" . ' : ' .  $user->role }}</li>
     <li class="list-group-item">{{ "Date de l'inscription" . ' : ' .  $user->created_at }}</li>
     <li class="list-group-item">{{ "Date de vérification du courriel" . ' : ' .  $user->email_verified_at }}</li>
+    <li class="list-group-item">{{ "Nombre d'image téléversé" . ' : ' .  $nbImage }}</li>
   </ul>
 </div>
 </div>
