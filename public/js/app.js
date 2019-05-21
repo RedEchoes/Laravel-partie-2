@@ -53868,7 +53868,7 @@ $(function () {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
-  $('.form-delete').submit(function (e) {
+  $('.image-delete').submit(function (e) {
     e.preventDefault();
     var href = $(e.currentTarget).attr('action');
 
@@ -53901,6 +53901,26 @@ $(function () {
       });
     }
   });
+  /* $('.profile-delete').submit((e) => {
+      e.preventDefault();
+      let href = $(e.currentTarget).attr('action')
+      if (confirm('Vraiment supprimer ?')) {
+          $.ajax({
+                  url: href,
+                  type: 'DELETE'
+              })
+              .done((data) => {
+                  console.log(data);
+                  document.getElementById("user-" + data.id).remove()
+                  alert("La suppression de l'utilisateur a été effectuée avec succès")
+                  window.location.href = "/login";
+              })
+              .fail(() => {
+                  alert("L'utilisateur n'a pu être supprimée")
+                })
+      }
+    }) */
+
   $('.btnAlert').submit(function (e) {
     e.preventDefault();
     var href = $(e.currentTarget).attr('action');
@@ -53916,6 +53936,17 @@ $(function () {
         alert("Le signalement n'a pas fonctionné");
       });
     }
+  });
+  $("#result").html('<div class="alert alert-success"><button type="button" class="close">×</button>' + info + '</div>'); //timing the alert box to close after 5 seconds
+
+  window.setTimeout(function () {
+    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+      $(this).remove();
+    });
+  }, 5000); //Adding a click event to the 'x' button to close immediately
+
+  $('.alert .close').on("click", function (e) {
+    $(this).parent().fadeTo(500, 0).slideUp(500);
   });
 });
 

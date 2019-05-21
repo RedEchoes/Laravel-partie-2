@@ -96,6 +96,6 @@ class ProfileController extends Controller {
         
         $users->delete();
     
-        return redirect('/');
+        return redirect('/') -> with('ok', __('Le compte a bien été supprimé'));
     }
 }
