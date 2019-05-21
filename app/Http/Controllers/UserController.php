@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Image;
+
 use App\User;
+use App\Image;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -48,7 +49,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $nbImage= Image::where("user_id", $user->id )->count();
+        $nbImage = Image::where('user_id', $user->id)->count();
+
         return view('users.show', compact('user', 'nbImage'));
     }
 

@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Image;
-use App\Location;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as InterventionImage;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class AdminController extends Controller
@@ -25,9 +22,8 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-        
         $images = Image::with('users')->get();
-       
+
         $images = $this->getReportedImage($images)->where('dissaproved', 1);
         $nbAlert = $images->where('pivot.alert', 1)->count();
         /* dd($nbAlert); */
@@ -55,14 +51,15 @@ class AdminController extends Controller
     {
         $images->transform(function ($image) use ($images) {
             $number = $image->users->where('pivot.alert', 1)->count();
-            
+
             $image->dissaproved = ($number < 1) ? 0 : 1;
-            
+
             return $image;
         });
-        
+
         return $images;
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -134,7 +131,8 @@ class AdminController extends Controller
             return response()->json(['message' => 'Not Found!'], 404);
         }
     }
-    public function destroyAll(Image $image)
+
+    public function destroyAll(Image $images)
     {
         if ($images->delete()) {
             return response()->json([

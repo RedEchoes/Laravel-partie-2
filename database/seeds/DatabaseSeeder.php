@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         UsersTableSeeder::class,
         LocationsTableSeeder::class,
         ImagesTableSeeder::class,
+        Image_UserTableSeeder::class,
       ]);
     }
 }

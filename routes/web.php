@@ -33,4 +33,3 @@ Route::resource('user', 'UserController', [
     ]);
     Route::delete('/signalement', 'AdminController@destroyAll');
     Route::resource('/signalement', 'AdminController');
-

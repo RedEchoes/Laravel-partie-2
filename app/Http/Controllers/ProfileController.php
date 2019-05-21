@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ProfileController extends Controller {
+class ProfileController extends Controller
+{
     /* public function __construct() {
         $this -> middleware('ajax') -> only('destroy');
     } */
@@ -17,7 +17,8 @@ class ProfileController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         //
     }
 
@@ -26,7 +27,8 @@ class ProfileController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -36,7 +38,8 @@ class ProfileController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
@@ -46,7 +49,8 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         //
     }
 
@@ -56,8 +60,9 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user) {
-        $this -> authorize('manage', $user);
+    public function edit(User $user)
+    {
+        $this->authorize('manage', $user);
 
         return view('profiles.edit', compact('user'));
     }
@@ -69,20 +74,21 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user) {
-        $this -> authorize('manage', $user);
-        $request -> validate([
-            'name' => 'required|max:255|unique:users,name,'.$user -> id,
-            'email' => 'required|string|email|max:255|unique:users,email,'.$user -> id,
-            'password' => 'required|min:6|unique:users,password,'.$user -> id, 
+    public function update(Request $request, User $user)
+    {
+        $this->authorize('manage', $user);
+        $request->validate([
+            'name' => 'required|max:255|unique:users,name,'.$user->id,
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+            'password' => 'required|min:6|unique:users,password,'.$user->id,
         ]);
-        $user -> update([
-            'name' => $request -> name,
-            'email' => $request -> email,
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        return back() -> with('ok', __('Le profil a bien été mis à jour'));
+        return back()->with('ok', __('Le profil a bien été mis à jour'));
     }
 
     /**
@@ -91,11 +97,12 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $users = User::find($id);
-        
+
         $users->delete();
-    
-        return redirect('/') -> with('ok', __('Le compte a bien été supprimé'));
+
+        return redirect('/')->with('ok', __('Le compte a bien été supprimé'));
     }
 }
