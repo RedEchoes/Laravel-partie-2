@@ -7,9 +7,9 @@ use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller {
-    public function __construct() {
+    /* public function __construct() {
         $this -> middleware('ajax') -> only('destroy');
-    }
+    } */
 
     /**
      * Display a listing of the resource.
@@ -93,6 +93,6 @@ class ProfileController extends Controller {
         
         $users->delete();
     
-        return response()->json($user);
+        return redirect('/') -> with('ok', __('Le compte a bien été supprimé'));
     }
 }
