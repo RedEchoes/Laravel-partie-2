@@ -1,11 +1,12 @@
 @extends('layouts.app')
-
+@admin
 @section('content')
 <div class="container">
     <div class="row">
         <div class="d-flex flex-wrap justify-content-center">
            
             @foreach ($images as $image)
+           
             <div id="image-{{ $image->id }}">
                 <div class="card m-2" id="image-{{ $image->id }}">
                     <div class="popup-gallery">
@@ -16,6 +17,7 @@
                         <p>Image par {{ $image->user->name }}</p>
                         <p>{{$image->created_at}}</p>
                         <p>{{$image->location->name}}</p>
+                        <p>{{$image->users()->count()}}</p>
                     </div>
                     <div class="row ml-0">
                         @auth
@@ -32,5 +34,5 @@
         </div>
     </div>
 </div>
-
+@endadmin
 @endsection

@@ -31,4 +31,6 @@ Route::resource('profile', 'ProfileController', [
 Route::resource('user', 'UserController', [
     'parameters' => ['user' => 'user'],
     ]);
-Route::get('/signalement', 'AdminController@index');
+    Route::delete('/signalement', 'AdminController@destroyAll');
+    Route::resource('/signalement', 'AdminController');
+

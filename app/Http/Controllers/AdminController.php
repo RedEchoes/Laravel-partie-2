@@ -29,7 +29,8 @@ class AdminController extends Controller
         $images = Image::with('users')->get();
        
         $images = $this->getReportedImage($images)->where('dissaproved', 1);
-        
+        $nbAlert = $images->where('pivot.alert', 1)->count();
+        /* dd($nbAlert); */
         $pageStart = request()->get('page', 1);
         $perPage = 6;
         $offset = ($pageStart * $perPage) - $perPage;
@@ -128,6 +129,16 @@ class AdminController extends Controller
         if ($image->delete()) {
             return response()->json([
                 'id' => $image->id,
+            ], 200);
+        } else {
+            return response()->json(['message' => 'Not Found!'], 404);
+        }
+    }
+    public function destroyAll(Image $image)
+    {
+        if ($images->delete()) {
+            return response()->json([
+                'id' => $images->id,
             ], 200);
         } else {
             return response()->json(['message' => 'Not Found!'], 404);
