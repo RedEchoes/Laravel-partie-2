@@ -4,9 +4,7 @@
         <td class="text-primary"><strong>{{ $user->name }}</strong></td>
         <td>{!! link_to_route('user.show', trans('Voir'), [$user->id], ['class' => 'btn btn-success btn-block btn']) !!}</td>
         <td>{!! link_to_route('user.edit', trans('Modifier'), [$user->id], ['class' => 'btn btn-warning btn-block']) !!}</td>
-        @admin($user->id)
         <td>@include('inc.delete-button-user')</td>
-        @endadmin
     </tr>
 @endforeach
 @endadmin
