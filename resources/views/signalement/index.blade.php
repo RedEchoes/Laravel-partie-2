@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="d-flex flex-wrap justify-content-center">
-           
+        @include('inc.delete-all-images')
             @foreach ($images as $image)
            
             <div id="image-{{ $image->id }}">

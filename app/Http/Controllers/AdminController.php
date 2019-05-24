@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('ajax')->only('destroy', 'update');
+        $this->middleware('ajax')->only('destroy', 'update', 'destroyAll');
     }
 
     public function index(Request $request)
@@ -25,8 +25,7 @@ class AdminController extends Controller
         $images = Image::with('users')->get();
 
         $images = $this->getReportedImage($images)->where('dissaproved', 1);
-        $nbAlert = $images->where('pivot.alert', 1)->count();
-        /* dd($nbAlert); */
+        /* $nbAlert = $images->where('pivot.alert', 1)->count(); */
         $pageStart = request()->get('page', 1);
         $perPage = 6;
         $offset = ($pageStart * $perPage) - $perPage;
@@ -49,7 +48,7 @@ class AdminController extends Controller
 
     public function getReportedImage($images)
     {
-        $images->transform(function ($image) use ($images) {
+        $images->transform(function ($image) {
             $number = $image->users->where('pivot.alert', 1)->count();
 
             $image->dissaproved = ($number < 1) ? 0 : 1;
@@ -132,11 +131,18 @@ class AdminController extends Controller
         }
     }
 
-    public function destroyAll(Image $images)
+    public function destroyAll()
     {
+        $images = Image::has('users')->whereHas('users', function ($query){
+            $query->where('alert', '>', 0);
+        });
+
+       /*  dd($images); */
+        /* $images = $this->getReportedImage($images)->where('dissaproved', 1); */
+        /* dd($images); */
         if ($images->delete()) {
             return response()->json([
-                'id' => $images->id,
+                
             ], 200);
         } else {
             return response()->json(['message' => 'Not Found!'], 404);

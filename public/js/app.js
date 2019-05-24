@@ -53884,6 +53884,22 @@ $(function () {
       });
     }
   });
+  $('.delete-all-images').submit(function (e) {
+    e.preventDefault();
+    var href = $(e.currentTarget).attr('action');
+
+    if (confirm('Vraiment supprimer toutes les images signalées?')) {
+      $.ajax({
+        url: href,
+        type: 'DELETE'
+      }).done(function () {
+        document.getElementById("py-4").remove();
+        alert("La suppression a été effectuée avec succès");
+      }).fail(function () {
+        alert("Les images n'ont pu être supprimée");
+      });
+    }
+  });
   $('.delete-user').submit(function (e) {
     e.preventDefault();
     var href = $(e.currentTarget).attr('action');
@@ -53901,26 +53917,24 @@ $(function () {
       });
     }
   });
-  /* $('.profile-delete').submit((e) => {
-      e.preventDefault();
-      let href = $(e.currentTarget).attr('action')
-      if (confirm('Vraiment supprimer ?')) {
-          $.ajax({
-                  url: href,
-                  type: 'DELETE'
-              })
-              .done((data) => {
-                  console.log(data);
-                  document.getElementById("user-" + data.id).remove()
-                  alert("La suppression de l'utilisateur a été effectuée avec succès")
-                  window.location.href = "/login";
-              })
-              .fail(() => {
-                  alert("L'utilisateur n'a pu être supprimée")
-                })
-      }
-    }) */
+  $('.profile-delete').submit(function (e) {
+    e.preventDefault();
+    var href = $(e.currentTarget).attr('action');
 
+    if (confirm('Vraiment supprimer ?')) {
+      $.ajax({
+        url: href,
+        type: 'DELETE'
+      }).done(function (data) {
+        console.log(data);
+        document.getElementById("user-" + data.id).remove();
+        alert("La suppression de l'utilisateur a été effectuée avec succès");
+        window.location.href = "/login";
+      }).fail(function () {
+        alert("L'utilisateur n'a pu être supprimée");
+      });
+    }
+  });
   $('.btnAlert').submit(function (e) {
     e.preventDefault();
     var href = $(e.currentTarget).attr('action');

@@ -25,6 +25,25 @@ $(() => {
 
     })
 
+    $('.delete-all-images').submit((e) => {
+        e.preventDefault();
+        let href = $(e.currentTarget).attr('action')
+        if (confirm('Vraiment supprimer toutes les images signalées?')) {
+            $.ajax({
+                    url: href,
+                    type: 'DELETE'
+                })
+                .done(() => {
+                    document.getElementById("py-4").remove()
+                    alert("La suppression a été effectuée avec succès")
+                })
+                .fail(() => {
+                    alert("Les images n'ont pu être supprimée")
+                })
+        }
+
+    })
+
     $('.delete-user').submit((e) => {
         e.preventDefault();
         let href = $(e.currentTarget).attr('action')
@@ -45,7 +64,7 @@ $(() => {
         }
 
     })
-    /* $('.profile-delete').submit((e) => {
+    $('.profile-delete').submit((e) => {
         e.preventDefault();
         let href = $(e.currentTarget).attr('action')
         if (confirm('Vraiment supprimer ?')) {
@@ -65,7 +84,7 @@ $(() => {
                 })
         }
 
-    }) */
+    })
 
     $('.btnAlert').submit((e) => {
         e.preventDefault();
