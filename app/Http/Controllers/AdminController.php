@@ -162,14 +162,25 @@ class AdminController extends Controller
     {
         $images = Image::has('users')->whereHas('users', function ($query){
             $query->where('alert', '>', 0);
-        });
-dd($images);
-        if ($images->users()->detach()) {
+        })->get();
+
+        dump($images);
+        foreach ($images as $image) {
+            # code...
+            /* dd($image); */
+            $image->users()->delete();
+
+            
+        }
+
+        /* if ($image->users()->detach()) {
             return response()->json([
-                
+                //
             ], 200);
         } else {
             return response()->json(['message' => 'Not Found!'], 404);
-        }
+        } */
+        
     }
+    
 }

@@ -51,7 +51,7 @@ $(() => {
                     url: href,
                     type: 'DELETE'
                 })
-                .done((data) => {
+                .done(() => {
                     document.getElementById("removePhotos").remove()
                     alert("La suppression de toutes les alertes ont été effectuée avec succès")
                 })
