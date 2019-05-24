@@ -99,8 +99,13 @@
             </div>
         </nav>
         @if (session('ok'))
-        <div class="alert alert-success">
+        <div class="alert alert-success text-center text-uppercase font-weight-bold">
             {{ session('ok')}}
+        </div>
+        @endif
+        @if (session('pasOk'))
+        <div class="alert alert-danger text-center text-uppercase font-weight-bold">
+            {{ session('pasOk')}}
         </div>
         @endif    
         <main class="py-4">

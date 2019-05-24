@@ -101,7 +101,7 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         if ($user && $user->admin) {
-          return back()->with('ok', __('Les profils avec le rôle admin ne peuvent pas être supprimé'));
+          return back()->with('pasOk', __('Les profils avec le rôle admin ne peuvent pas être supprimé'));
       } else{
         $user->delete();
         return redirect('/')->with('ok', __('Le compte a bien été supprimé'));
