@@ -13,9 +13,9 @@
                                 alt="images" class="image" /></a>
                     </div>
                     <div class="card-body">
-                        <p>Image par {{ $image->user->name }}</p>
-                        <p>{{$image->created_at}}</p>
-                        <p>{{$image->location->name}}</p>
+                    <p>Image par: {{ $image->user->name }}</p>
+                        <p>Date: {{$image->created_at}}</p>
+                        <p>Ville: {{$image->location->name}}</p>
                     </div>
                     <div class="row ml-0">
                         @auth

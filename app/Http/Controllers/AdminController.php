@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
+
 use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -96,9 +96,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -132,7 +132,7 @@ class AdminController extends Controller
 
     public function destroyAll()
     {
-        $images = Image::has('users')->whereHas('users', function ($query){
+        $images = Image::has('users')->whereHas('users', function ($query) {
             $query->where('alert', '>', 0);
         });
 
@@ -160,16 +160,14 @@ class AdminController extends Controller
 
     public function removeAllAlert()
     {
-        $images = Image::has('users')->whereHas('users', function ($query){
+        $images = Image::has('users')->whereHas('users', function ($query) {
             $query->where('alert', '>', 0);
         })->get();
 
         foreach ($images as $image) {
-            # code...
+            // code...
             /* dd($image); */
             $image->users()->detach($image->users);
-
-            
         }
 
         /* if ($image->users()->detach()) {
@@ -179,7 +177,5 @@ class AdminController extends Controller
         } else {
             return response()->json(['message' => 'Not Found!'], 404);
         } */
-        
     }
-    
 }

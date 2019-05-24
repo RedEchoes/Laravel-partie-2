@@ -17,6 +17,7 @@ class UserController extends Controller
     {
         /* $users = User::all(); */
         $users = User::where('role', 'user')->get();
+
         return view('users.index', compact('users'));
     }
 
@@ -94,7 +95,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-      dd($user);
+        dd($user);
         $user->delete();
 
         return response()->json($user);
