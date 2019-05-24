@@ -99,10 +99,13 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        $users = User::find($id);
-
-        $users->delete();
-
+        $user = User::find($id);
+        if ($user && $user->admin) {
+          return back()->with('ok', __('Les profils avec le rôle admin ne peuvent pas être supprimé'));
+      } else{
+        $user->delete();
         return redirect('/')->with('ok', __('Le compte a bien été supprimé'));
+      }
+      
     }
 }
