@@ -164,11 +164,10 @@ class AdminController extends Controller
             $query->where('alert', '>', 0);
         })->get();
 
-        dump($images);
         foreach ($images as $image) {
             # code...
             /* dd($image); */
-            $image->users()->delete();
+            $image->delete();
 
             
         }
