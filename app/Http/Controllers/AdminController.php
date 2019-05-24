@@ -167,7 +167,7 @@ class AdminController extends Controller
         foreach ($images as $image) {
             # code...
             /* dd($image); */
-            $image->delete();
+            $image->users()->detach($image->users);
 
             
         }
