@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +25,6 @@ class AdminController extends Controller
         $images = Image::with('users')->get();
 
         $images = $this->getReportedImage($images)->where('dissaproved', 1);
-        /* $nbAlert = $images->where('pivot.alert', 1)->count(); */
         $pageStart = request()->get('page', 1);
         $perPage = 6;
         $offset = ($pageStart * $perPage) - $perPage;
@@ -137,10 +136,35 @@ class AdminController extends Controller
             $query->where('alert', '>', 0);
         });
 
-       /*  dd($images); */
-        /* $images = $this->getReportedImage($images)->where('dissaproved', 1); */
-        /* dd($images); */
         if ($images->delete()) {
+            return response()->json([
+                //
+            ], 200);
+        } else {
+            return response()->json(['message' => 'Not Found!'], 404);
+        }
+    }
+
+    public function removeAlert($id)
+    {
+        $image = Image::find($id);
+        $user_id = $image->user_id;
+        if ($image->users()->detach($image->users)) {
+            return response()->json([
+                'id' => $image->id,
+            ], 200);
+        } else {
+            return response()->json(['message' => 'Not Found!'], 404);
+        }
+    }
+
+    public function removeAllAlert()
+    {
+        $images = Image::has('users')->whereHas('users', function ($query){
+            $query->where('alert', '>', 0);
+        });
+dd($images);
+        if ($images->users()->detach()) {
             return response()->json([
                 
             ], 200);

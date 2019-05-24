@@ -31,5 +31,7 @@ Route::resource('profile', 'ProfileController', [
 Route::resource('user', 'UserController', [
     'parameters' => ['user' => 'user'],
     ]);
-    Route::delete('/signalement', 'AdminController@destroyAll')->name('destroyAll');
-    Route::resource('/signalement', 'AdminController');
+Route::delete('/signalement', 'AdminController@destroyAll')->name('destroyAll');
+Route::delete('/signalement2', 'AdminController@removeAllAlert')->name('removeAllAlert');
+Route::delete('/signalement1/{id}', 'AdminController@removeAlert')->name('removeAlert');
+Route::resource('/signalement', 'AdminController');

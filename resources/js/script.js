@@ -24,6 +24,43 @@ $(() => {
         }
 
     })
+    $('.remove-alert').submit((e) => {
+        e.preventDefault();
+        let href = $(e.currentTarget).attr('action')
+        if (confirm("Vraiment enlever l'alerte ?")) {
+            $.ajax({
+                    url: href,
+                    type: 'DELETE'
+                })
+                .done((data) => {
+                    document.getElementById("image-" + data.id).remove()
+                    alert("La suppression de l'alerte a été effectuée avec succès")
+                })
+                .fail(() => {
+                    alert("L'alerte n'a pu être supprimée")
+                })
+        }
+
+    })
+
+    $('.remove-all-alert').submit((e) => {
+        e.preventDefault();
+        let href = $(e.currentTarget).attr('action')
+        if (confirm("Vraiment enlever toutes les alertes ?")) {
+            $.ajax({
+                    url: href,
+                    type: 'DELETE'
+                })
+                .done((data) => {
+                    document.getElementById("removePhotos").remove()
+                    alert("La suppression de toutes les alertes ont été effectuée avec succès")
+                })
+                .fail(() => {
+                    alert("Les alertes n'ont pu être supprimée")
+                })
+        }
+
+    })
 
     $('.delete-all-images').submit((e) => {
         e.preventDefault();
@@ -34,7 +71,7 @@ $(() => {
                     type: 'DELETE'
                 })
                 .done(() => {
-                    alert("La suppression a été effectuée avec succès")
+                    alert("La suppression des images signalées a été effectuée avec succès")
                     document.getElementById("removePhotos").remove()
                     
                 })

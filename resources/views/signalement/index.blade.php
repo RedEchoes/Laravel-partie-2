@@ -5,6 +5,7 @@
     <div class="row">
         <div class="d-flex flex-wrap justify-content-center">
         @include('inc.delete-all-images')
+        @include('inc.remove-all-alert')
             @foreach ($images as $image)
            
             <div id="image-{{ $image->id }}">
@@ -23,6 +24,7 @@
                         @auth
                         @include('inc.delete-button')
                         @include('inc.alert-button')
+                        @include('inc.remove-alert')
                         @endauth
                     </div>
                 </div>
