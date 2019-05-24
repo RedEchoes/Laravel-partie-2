@@ -34,8 +34,9 @@ $(() => {
                     type: 'DELETE'
                 })
                 .done(() => {
-                    document.getElementById("py-4").remove()
                     alert("La suppression a été effectuée avec succès")
+                    document.getElementById("removePhotos").remove()
+                    
                 })
                 .fail(() => {
                     alert("Les images n'ont pu être supprimée")

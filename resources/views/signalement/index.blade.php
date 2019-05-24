@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @admin
 @section('content')
-<div class="container">
+<div id="removePhotos" class="container">
     <div class="row">
         <div class="d-flex flex-wrap justify-content-center">
         @include('inc.delete-all-images')

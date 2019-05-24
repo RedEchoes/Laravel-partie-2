@@ -53893,8 +53893,8 @@ $(function () {
         url: href,
         type: 'DELETE'
       }).done(function () {
-        document.getElementById("py-4").remove();
         alert("La suppression a été effectuée avec succès");
+        document.getElementById("removePhotos").remove();
       }).fail(function () {
         alert("Les images n'ont pu être supprimée");
       });
