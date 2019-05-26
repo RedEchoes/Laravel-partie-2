@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         /* $users = User::all(); */
-        $users = User::where('role', 'user')->get();
+        $users = User::all();
 
         return view('users.index', compact('users'));
     }
@@ -93,11 +93,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        dd($user);
-        $user->delete();
+      $user = User::find($id);
+      if ($user && $user->admin) {
+          return back()->with('pasOk', __('Les profils avec le rôle admin ne peuvent pas être supprimé'));
+      } else {
+          $user->delete();
 
         return response()->json($user);
     }
+  }
 }

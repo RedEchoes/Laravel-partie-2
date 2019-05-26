@@ -111,10 +111,10 @@ $(() => {
                     type: 'DELETE'
                 })
                 .done((data) => {
-                    console.log(data);
                     document.getElementById("user-" + data.id).remove()
                     alert("La suppression de l'utilisateur a été effectuée avec succès")
                     window.location.href = "/login";
+                   
                 })
                 .fail(() => {
                     alert("L'utilisateur n'a pu être supprimée")
