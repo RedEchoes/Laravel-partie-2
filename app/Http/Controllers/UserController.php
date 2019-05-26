@@ -95,13 +95,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-      $user = User::find($id);
-      if ($user && $user->admin) {
-          return back()->with('pasOk', __('Les profils avec le rôle admin ne peuvent pas être supprimé'));
-      } else {
-          $user->delete();
+        $user = User::find($id);
+        if ($user && $user->admin) {
+            return back()->with('pasOk', __('Les profils avec le rôle admin ne peuvent pas être supprimé'));
+        } else {
+            $user->delete();
 
-        return response()->json($user);
+            return response()->json($user);
+        }
     }
-  }
 }

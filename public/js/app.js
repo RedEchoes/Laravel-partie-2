@@ -54192,7 +54192,6 @@ $(function () {
         url: href,
         type: 'DELETE'
       }).done(function (data) {
-        console.log(data);
         document.getElementById("user-" + data.id).remove();
         alert("La suppression de l'utilisateur a été effectuée avec succès");
         window.location.href = "/login";
